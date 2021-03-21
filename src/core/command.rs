@@ -7,7 +7,7 @@ pub enum ExecutionResult {
     JumpStartOfBlock,
 }
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Clone)]
 pub enum Command {
     IncDataPtr,
     DecDataPtr,
@@ -57,7 +57,7 @@ impl Command {
             Self::IncValue => {
                 match data.get_mut(*data_ptr) {
                     Some(entry) => {
-                        *entry += 1;
+                        *entry = entry.saturating_add(1);
                     }
                     None => {
                         data.resize(*data_ptr + 1, 0);
