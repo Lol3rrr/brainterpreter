@@ -1,5 +1,3 @@
-use std::slice::SliceIndex;
-
 use crate::compiler::lexer::Token;
 
 pub fn remove_dead(tokens: &mut Vec<Token>) {
